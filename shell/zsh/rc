@@ -1,0 +1,71 @@
+# Zsh Options{{{
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+
+setopt autocd
+
+zstyle ':completion:*' rehash true
+zstyle '*:completion:*' menu select
+zmodload zsh/complist
+# }}}
+
+# zsh variables {{{
+export HISTSIZE=10000000
+export SAVEHIST=10000000
+export HISTFILE=${HISTFILE:-"$HOME/.zsh_history"}
+
+# zvm variables {{{
+export ZVM_VI_EDITOR=$EDITOR
+export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# }}}
+# }}}
+
+# Zsh aliases{{{
+alias history="history 0"
+# }}}
+
+# Keymaps{{{
+bindkey '^ ' autosuggest-accept # control-space to accept autocompletions
+
+bindkey '^[j' expand-or-complete # Alt-j to show tab completions and select
+bindkey '^[k' reverse-menu-complete # Alt-k to show tab completions and select in reverse order
+# using j,k,h,l in tab completion movement
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+check search-install && {
+  search-install-z(){
+    search-install
+    zle reset-prompt
+  }
+  zle -N search-install-z search-install-z
+  bindkey '^_' search-install-z # maps ctrl-/
+}
+
+check search-remove && {
+  search-remove-z(){
+    search-remove
+    zle reset-prompt
+  }
+  zle -N search-remove-z search-remove-z
+  bindkey '^[^_' search-remove-z # maps ctrl-alt-/
+}
+
+[ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh 
+
+# }}}
+
+# Solving Overrides{{{
+
+[ -f /usr/share/fzf/key-bindings.zsh ] && . /usr/share/fzf/key-bindings.zsh 
+# }}}
+
+# vim: ft=bash

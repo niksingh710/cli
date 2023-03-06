@@ -1,0 +1,91 @@
+# This is aliases i use
+check python3 && alias python="python3"
+check pip3 && alias pip="pip3"
+check unimatrix && alias matrix="unimatrix -f -l ocCgGkS -s 96"
+
+check bat && {
+	export BAT_THEME="TwoDark"
+	alias cat="bat"
+	alias pcat="bat -p"
+	alias bcat="bat -l bash"
+	alias dcat="bat --decorations=always"
+}
+check sshd && {
+	alias ssh-list="ssh | grep -i ssh"
+	alias ssh-status="$rootmgr systemctl status sshd"
+	alias ssh-start="$rootmgr systemctl start sshd"
+	alias ssh-stop="$rootmgr systemctl stop sshd"
+	alias ssh-restart="$rootmgr systemctl restart sshd"
+	alias ssh-terminate="pkill -o -u $USER sshd"
+}
+check exa && {
+	args="--color=auto --icons --sort=size --group-directories-first"
+	alias l="exa -ahF $args"
+	alias ll="exa -lahF $args"
+	alias ls="exa -hF $args"
+	alias lss="exa -lhF $args"
+	alias lst="exa -lahFT $args"
+	alias lt="exa -aT $args"
+}
+check mysql && {
+	alias mysql-start='$rootmgr systemctl start mysql'
+	alias mysql-status='$rootmgr systemctl status mysql'
+	alias mysql-stop='$rootmgr systemctl stop mysql'
+	alias sql='mysql-start && mysql -u "$USER" -p && mysql-stop'
+
+	check mycli && {
+		alias sql='mysql-start && mycli -u "$USER" && mysql-stop'
+	}
+}
+
+$_arch && {
+	pkmgr="$rootmgr pacman"
+	hash paru 2>/dev/null && pkmgr=paru
+	hash yay 2>/dev/null && pkmgr=yay
+	alias sync="$pkmgr -Sy && pkill -SIGRTMIN+8 waybar"
+	alias update="$pkmgr -Syu && pkill -SIGRTMIN+8 waybar" # sends signal to waybar
+	alias udpate="udpate"
+}
+
+# Extra Aliases
+check advcp && alias cp="advcp -gR"
+check advmv && alias mv="advmv -g"
+check wl-paste && alias paste="wl-paste"
+check wl-copy && alias copy="wl-copy"
+check figlet && alias stime="watch -n1 -t 'date +%T | figlet'"
+check radeontop && alias radeontop="radeontop -Tc"
+check glow && alias mcat="glow"
+check sl && alias sl="sl -e"
+check tldr && alias eman="tldr"
+check sensors && alias wsensors="watch -n1 -t 'sensors'"
+check ip && alias myip="echo -e $(ip route get 1.2.3.4 | awk '{print $7}' | sed -z 's/\n/ /g')"
+check curl && alias mygip="curl -s http://ipecho.net/plain;echo"
+check sudo && alias sudo="sudo "
+check doas && alias doas="doas "
+check trash && alias rm='echo "Fuck Off"; false'
+
+alias c="clear"
+alias claer="clear"
+alias celar="clear"
+alias rcp="$_rootmgr cp"
+alias rmv="$_rootmgr mv"
+alias e="$EDITOR"
+
+check doasedit && alias ee="doasedit"
+check sudoedit && alias ee="sudoedit"
+
+# Sourcing shell specific config
+alias shell="exec $_shell"
+
+$_arch && {
+	pkmgr="$rootmgr pacman"
+	hash paru 2>/dev/null && pkmgr=paru
+	hash yay 2>/dev/null && pkmgr=yay
+	alias sync="$pkmgr -Sy && pkill -SIGRTMIN+8 waybar"
+	alias update="$pkmgr -Syu && pkill -SIGRTMIN+8 waybar" # sends signal to waybar
+	alias udpate="udpate"
+}
+
+[ -f "$HOME/.wallpaper" ] && alias favwall="readlink ~/.wallpaper >> ~/.favwalls"
+
+# vim: ft=bash

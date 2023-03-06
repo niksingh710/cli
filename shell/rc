@@ -1,0 +1,51 @@
+# This is a config file for setting up my shell
+stty -ixon # Disables shell freeze on ctrl+s
+
+# funtions {{{
+check(){
+  command -v "$1" 1>/dev/null
+}
+# }}}
+
+# variables{{{
+_rootmgr=sudo # sudo by default and doas if present
+check doas && _rootmgr=doas
+
+_loc="$HOME/work/cli/shell"
+_shell="$(basename $(realpath /proc/$$/exe))"
+
+_arch=false
+[ -f "/etc/os-release" ] && . "/etc/os-release"
+[ "$ID" = "arch" ] && _arch=true
+
+# export Variables{{{
+export HISTFILE="$HOME/.shellhist"
+
+check vim && export VISUAL="vim"
+check nvim && export VISUAL="nvim"
+check lvim && export VISUAL="lvim"
+
+export EDITOR=$VISUAL
+
+check npm && export NPM_CONFIG_PREFIX="$HOME/.npm/"
+check pnpm && export PNPM_HOME="$HOME/.local/share/pnpm"
+
+# }}}
+
+# }}}
+
+# Modules {{{
+if [ "$(/usr/bin/ls -A $_loc/modules/)" ]; then
+  for module in "$_loc/modules/"*
+  do
+    . $module
+  done
+fi
+# }}}
+
+
+hash doas 2>/dev/null && complete -cf doas
+
+[ -f "$_loc/${_shell}rc" ] && . "$_loc/${_shell}rc" # Sourcing the shell specific files
+
+# vim: ft=bash

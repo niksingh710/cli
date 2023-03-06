@@ -1,0 +1,26 @@
+# ██████   █████  ████████ ██   ██ 
+# ██   ██ ██   ██    ██    ██   ██ 
+# ██████  ███████    ██    ███████ 
+# ██      ██   ██    ██    ██   ██ 
+# ██      ██   ██    ██    ██   ██ 
+# Setting up path variable.
+
+pathList=(
+  "$HOME/bin"
+  "$PNPM_HOME"
+  "$HOME/go/bin"
+  "$HOME/.npm/bin"
+  "$HOME/.local/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/repos/shell/bin"
+  "$HOME/.local/share/pnpm"
+)
+
+# sourcing path {{{
+for i in "${pathList[@]}"
+do
+  if [ -d $i ] && [[ ":$PATH:" != *":$i:"* ]]; then
+    export PATH="${PATH:+"$PATH:"}$i"
+  fi
+done
+# }}}

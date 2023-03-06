@@ -1,0 +1,7 @@
+# initializing starship in bash
+check starship && eval "$(starship init bash)"
+
+# bash options
+shopt -s autocd
+shopt -s checkwinsize
+# vim: ft=bash

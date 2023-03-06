@@ -1,0 +1,16 @@
+# These are general modules to be sourced
+check fnm && {
+	eval "$(fnm env --use-on-cd)"
+}
+
+check zoxide && { 
+  eval "$(zoxide init "$_shell" --cmd cd)"
+  check fzf && export _ZO_FZF_OPTS="$pdown $pup $select $deselect --height=60% $(preview -1)"
+}
+
+check git && {
+  export GIT_EDITOR=$EDITOR
+  alias gc="git clone"
+}
+
+# vim: ft=bash

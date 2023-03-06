@@ -1,0 +1,37 @@
+# This is snap sourcing itself if not present
+[ -f "$_loc"/zsh/plugins/zsh-snap/znap.zsh ] \
+  || git clone \
+  --depth 1 \
+  -- https://github.com/marlonrichert/zsh-snap.git \
+  "$_loc"/zsh/plugins/zsh-snap
+
+. "$_loc"/zsh/plugins/zsh-snap/znap.zsh
+
+# prompt{{{
+check starship && {
+  znap eval starship 'starship init zsh --print-full-init'
+  prompt_starship_precmd
+  check colorscript && colorscript -r
+  znap prompt starship
+}
+
+# }}}
+
+# Plugins{{{
+[ -f "$_loc"/zsh/plugins/zsh-snap/znap.zsh ] && {
+# ohmyzsh{{{
+  znap install ohmyzsh/ohmyzsh
+  check sudo && znap source ohmyzsh/ohmyzsh plugins/sudo
+  znap source ohmyzsh/ohmyzsh plugins/colored-man-pages
+# }}}
+  znap source zsh-users/zsh-autosuggestions
+  znap source z-shell/F-Sy-H
+  znap source chrissicool/zsh-256color
+  znap source jeffreytse/zsh-vi-mode
+  znap source zsh-users/zsh-completions
+  znap source MichaelAquilina/zsh-you-should-use
+  check doas && znap source Senderman/doas-zsh-plugin
+}
+# }}}
+
+zvm_after_init_commands+=('[ -f "$_loc"/zsh/rc ] && . "$_loc"/zsh/rc')
