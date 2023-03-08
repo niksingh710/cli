@@ -73,6 +73,7 @@ vim() {
 	ln -sf "$HOME/repos/cli/lvim" "$HOME/.config/lvim"
 }
 commonConfigs() {
+	mkdir -p "$HOME/.config/pistol"
 	ln -sf "$HOME/repos/cli/pistol.conf" "$HOME/.config/pistol/pistol.conf"
 	ln -sf "$HOME/repos/cli/starship.toml" "$HOME/.config/starship.toml"
 	ln -sf "$HOME/repos/cli/urlview" "$HOME/.urlview"
