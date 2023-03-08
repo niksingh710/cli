@@ -9,7 +9,7 @@ Quickly able to run on TTY too.
 
 ## Vim
 Quick vim setup for TTY.
-`curl https://gist.githubusercontent.com/niksingh710/335a8b821dd53031eb5e12e80c7ae7e5/raw/06dfec1e4c501d552da760bd8321f4a248a4227a/vim > ~/.vimrc`
+```curl https://gist.githubusercontent.com/niksingh710/335a8b821dd53031eb5e12e80c7ae7e5/raw/06dfec1e4c501d552da760bd8321f4a248a4227a/vim > ~/.vimrc```
 
 # Utilities
 

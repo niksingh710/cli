@@ -1,4 +1,4 @@
-./shell/zsh/plugins
+shell/zsh/plugins
 lvim/lazy-lock.json
 .gitsecret/keys/random_seed
 !*.secret

@@ -28,3 +28,63 @@ notify() {
 		echo "$@"
 	}
 }
+
+archSetup() {
+	check yay && _aur="yay"
+	check paru && _aur="paru"
+	# shellcheck disable=SC2015
+	[ -z "$_aur" ] && {
+		err "Aur Handler not present!!"
+		return
+	} || ok "Using $_aur as Aur handler"
+
+	$_aur -S --needed rustup python python-pip fnm-bin go tmux tmux-bash-completion-git zsh-completions-git bash-complete-alias bash-completion fd ripgrep shellcheck-bin shfmt advcpmv bat exa git urlview git-secret
+
+	check go && {
+		check simplehttp || go install github.com/niksingh710/simplehttp@latest
+		check pistol || go install github.com/charmbracelet/glow@latest
+		check glow || go install github.com/doronbehar/pistol/cmd/pistol@latest
+	}
+}
+
+shell() {
+	[ -d "$HOME/.config/shell" ] && {
+		mv "$HOME/.config/shell" "$HOME/.config/shell.bak"
+	}
+	ln -sf "$HOME/repos/cli/shell" "$HOME/.config/shell"
+}
+tmux() {
+	ln -sf "$HOME/repos/cli/tmux.conf" "$HOME/.tmux.conf"
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ok "Installed tpm plugin manager Tmux\nMake sure to use prefix+Shift+I to install plugins"
+}
+vim() {
+	curl https://gist.githubusercontent.com/niksingh710/335a8b821dd53031eb5e12e80c7ae7e5/raw/06dfec1e4c501d552da760bd8321f4a248a4227a/vim >~/.vimrc && ok "Basic vim settedup"
+	check lvim || {
+		bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+	}
+	[ -d "$HOME/.config/lvim" ] && {
+		mv "$HOME/.config/lvim" "$HOME/.config/lvim.bak"
+	}
+	ln -sf "$HOME/repos/cli/lvim" "$HOME/.config/lvim"
+}
+commonConfigs() {
+	ln -sf "$HOME/repos/cli/pistol.conf" "$HOME/.config/pistol/pistol.conf"
+	ln -sf "$HOME/repos/cli/starship.toml" "$HOME/.config/starship.toml"
+	ln -sf "$HOME/repos/cli/urlview" "$HOME/.urlview"
+}
+
+check git || {
+	err "Git not installed... exiting"
+	exit
+}
+git clone https://github.com/niksingh710/cli.git ~/repos/cli
+[ -d "$HOME/repos/cli" ] || {
+	err "no cli cloned"
+	exit
+}
+
+$_arch && archSetup
+shell
+commonConfigs
+vim
+tmux
