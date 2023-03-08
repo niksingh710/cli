@@ -88,8 +88,8 @@ check git || {
 [ -d "$HOME/repos/cli" ] || {
 	git clone https://github.com/niksingh710/cli.git ~/repos/cli
 } && {
-	"cli dir exists"
-	"exiting"
+	echo "cli dir exists"
+	echo "exiting"
 	exit
 }
 [ -d "$HOME/repos/cli" ] || {
