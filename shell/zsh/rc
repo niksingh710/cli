@@ -14,7 +14,7 @@ zstyle ':completion:*' rehash true
 zstyle '*:completion:*' menu select
 zmodload zsh/complist
 
-fpath+=~/.zfunc
+fpath+=~/.config/shell/zsh/zfunc
 # }}}
 
 # zsh variables {{{

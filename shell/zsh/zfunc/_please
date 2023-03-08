@@ -1,0 +1,7 @@
+#compdef please
+
+_please_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _PLEASE_COMPLETE=complete_zsh please)
+}
+
+compdef _please_completion please
