@@ -12,7 +12,7 @@ pathList=(
   "$HOME/.npm/bin"
   "$HOME/.local/bin"
   "$HOME/.cargo/bin"
-  "$HOME/repos/shell/bin"
+  "$HOME/.config/shell/bin"
   "$HOME/.local/share/pnpm"
 )
 

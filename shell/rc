@@ -11,7 +11,7 @@ check(){
 _rootmgr=sudo # sudo by default and doas if present
 check doas && _rootmgr=doas
 
-_loc="$HOME/work/cli/shell"
+_loc="$HOME/repos/cli/shell"
 _shell="$(basename $(realpath /proc/$$/exe))"
 
 _arch=false
@@ -38,7 +38,7 @@ check pnpm && export PNPM_HOME="$HOME/.local/share/pnpm"
 if [ "$(/usr/bin/ls -A $_loc/modules/)" ]; then
   for module in "$_loc/modules/"*
   do
-    . $module
+    . "$module"
   done
 fi
 # }}}
