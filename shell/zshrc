@@ -14,7 +14,6 @@ check starship && {
   check colorscript && colorscript -r
   znap prompt starship
 }
-
 # }}}
 
 # Plugins{{{
@@ -24,10 +23,15 @@ check starship && {
   check sudo && znap source ohmyzsh/ohmyzsh plugins/sudo
   znap source ohmyzsh/ohmyzsh plugins/colored-man-pages
 # }}}
+  # zvm {{{
+  export ZVM_VI_EDITOR=$EDITOR
+  export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+  export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+  znap source jeffreytse/zsh-vi-mode
+  # }}}
   znap source zsh-users/zsh-autosuggestions
   znap source z-shell/F-Sy-H
   znap source chrissicool/zsh-256color
-  znap source jeffreytse/zsh-vi-mode
   znap source zsh-users/zsh-completions
   znap source MichaelAquilina/zsh-you-should-use
   check doas && znap source Senderman/doas-zsh-plugin
