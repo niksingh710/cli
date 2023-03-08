@@ -85,12 +85,12 @@ check git || {
 	err "Git not installed... exiting"
 	exit
 }
-[ -d "$HOME/repos/cli" ] || {
-	git clone https://github.com/niksingh710/cli.git ~/repos/cli
-} && {
+[ -d "$HOME/repos/cli" ] && {
 	echo "cli dir exists"
 	echo "exiting"
 	exit
+} || {
+	git clone https://github.com/niksingh710/cli.git ~/repos/cli
 }
 [ -d "$HOME/repos/cli" ] || {
 	err "no cli cloned"
