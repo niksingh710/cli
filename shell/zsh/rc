@@ -19,11 +19,6 @@ export HISTSIZE=10000000
 export SAVEHIST=10000000
 export HISTFILE=${HISTFILE:-"$HOME/.zsh_history"}
 
-# zvm variables {{{
-export ZVM_VI_EDITOR=$EDITOR
-export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
-export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-# }}}
 # }}}
 
 # Zsh aliases{{{

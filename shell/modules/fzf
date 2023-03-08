@@ -15,11 +15,12 @@ check fzf && {
 			echo "--preview='pistol {$1}'"
 		}
 	}
-	pdown="--bind=ctrl-alt-j:preview-down"
-	pup="--bind=ctrl-alt-k:preview-up"
-	select="--bind=ctrl-space:select"
-	deselect="--bind=ctrl-/:deselect"
-	mopts="$pdown $pup $select $deselect"
+  mopts=(
+  "--bind=ctrl-alt-j:preview-down"
+	"--bind=ctrl-alt-k:preview-up"
+	"--bind=ctrl-space:select"
+	"--bind=ctrl-/:deselect"
+  )
   opts="$mopts $(preview) --height=60%"
 
 	export FZF_CTRL_T_OPTS="$opts"
@@ -35,16 +36,16 @@ check fzf && {
   check zoxide && export _ZO_FZF_OPTS="$mopts $(preview -1) --height=60%"
 	gd() {
 		preview="git diff $@ --color=always -- {-1}"
-		git diff $@ --name-only | fzf "$mopts" -m --ansi --preview $preview
+		git diff $@ --name-only | fzf ${mopts[*]} -m --ansi --preview $preview
 	}
 
 	$_arch && {
 		search-install() {
-			$pkmgr -Slq | fzf "$mopts" --multi --preview "$pkmgr -Si {1}" | xargs -ro $pkmgr -S
+			$pkmgr -Slq | fzf ${mopts[*]} --multi --preview "$pkmgr -Si {1}" | xargs -ro $pkmgr -S
 			return
 		}
 		search-remove() {
-			$pkmgr -Qq | fzf "$mopts" --multi --preview "$pkmgr -Qil {1}" | xargs -ro $pkmgr -Rcns
+			$pkmgr -Qq | fzf ${mopts[*]} --multi --preview "$pkmgr -Qil {1}" | xargs -ro $pkmgr -Rcns
 			return
 		}
 	}

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+_arch=false
+
+[ -f "/etc/os-release" ] && . "/etc/os-release"
+[ "$ID" = "arch" ] && _arch=true
+green="\033[0;32m"
+red="\033[0;31m"
+nocolor="\033[0m"
+
+check() {
+	command -v "$1" 1>/dev/null
+}
+
+ok() {
+	echo -e "[$green  $nocolor] $*"
+}
+
+err() {
+	echo -e "[$red  $nocolor] $*"
+}
+
+notify() {
+	# shellcheck disable=SC2015
+	check notify-send && {
+		notify-send "$@"
+	} || {
+		echo "$@"
+	}
+}
