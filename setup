@@ -52,6 +52,11 @@ shell() {
 		mv "$HOME/.config/shell" "$HOME/.config/shell.bak"
 	}
 	ln -sf "$HOME/repos/cli/shell" "$HOME/.config/shell"
+
+	# shellcheck disable=SC2016
+	echo '[ -f "$HOME/.config/shell/rc" ] && . "$HOME/.config/shell/rc"' >~/.bashrc
+	# shellcheck disable=SC2016
+	echo '[ -f "$HOME/.config/shell/rc" ] && . "$HOME/.config/shell/rc"' >~/.zshrc
 }
 tmux() {
 	ln -sf "$HOME/repos/cli/tmux.conf" "$HOME/.tmux.conf"

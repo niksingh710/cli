@@ -8,10 +8,13 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 setopt autocd
+autoload -Uz compinit
 
 zstyle ':completion:*' rehash true
 zstyle '*:completion:*' menu select
 zmodload zsh/complist
+
+fpath+=~/.zfunc
 # }}}
 
 # zsh variables {{{
