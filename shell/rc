@@ -1,6 +1,8 @@
 # This is a config file for setting up my shell
 stty -ixon # Disables shell freeze on ctrl+s
 
+[ -f "$HOME/.config/wpg/sequences" ] && /usr/bin/cat "$HOME/.config/wpg/sequences"
+
 # funtions {{{
 check(){
   command -v "$1" 1>/dev/null
@@ -47,5 +49,4 @@ fi
 hash doas 2>/dev/null && complete -cf doas
 
 [ -f "$_loc/${_shell}rc" ] && . "$_loc/${_shell}rc" # Sourcing the shell specific files
-
 # vim: ft=bash

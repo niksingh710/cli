@@ -4,4 +4,7 @@ check starship && eval "$(starship init bash)"
 # bash options
 shopt -s autocd
 shopt -s checkwinsize
+
+[ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
+
 # vim: ft=bash

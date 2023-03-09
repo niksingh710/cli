@@ -7,15 +7,6 @@
 
 . "$_loc"/zsh/plugins/zsh-snap/znap.zsh
 
-# prompt{{{
-check starship && {
-  znap eval starship 'starship init zsh --print-full-init'
-  prompt_starship_precmd
-  check colorscript && colorscript -r
-  znap prompt starship
-}
-# }}}
-
 # Plugins{{{
 [ -f "$_loc"/zsh/plugins/zsh-snap/znap.zsh ] && {
 # ohmyzsh{{{
@@ -37,5 +28,18 @@ check starship && {
   check doas && znap source Senderman/doas-zsh-plugin
 }
 # }}}
+
+# prompt{{{
+check starship && {
+  znap eval starship 'starship init zsh --print-full-init'
+  prompt_starship_precmd
+  check colorscript && colorscript -r
+  znap prompt starship
+}
+# }}}
+
+check gtasks && znap fpath _gtasks 'gtasks completion zsh'
+check gh && znap fpath _github 'gh completion -s zsh'
+check trash && znap fpath _trash 'trash --print-completion zsh'
 
 zvm_after_init_commands+=('[ -f "$_loc"/zsh/rc ] && . "$_loc"/zsh/rc')

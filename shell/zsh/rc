@@ -8,18 +8,15 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 setopt autocd
-autoload -Uz compinit
 
 zstyle ':completion:*' rehash true
 zstyle '*:completion:*' menu select
 zmodload zsh/complist
-
-fpath+=~/.config/shell/zsh/zfunc
 # }}}
 
 # zsh variables {{{
-export HISTSIZE=10000000
-export SAVEHIST=10000000
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
 export HISTFILE=${HISTFILE:-"$HOME/.zsh_history"}
 
 # }}}
