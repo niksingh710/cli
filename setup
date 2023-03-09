@@ -38,7 +38,7 @@ archSetup() {
 		return
 	} || ok "Using $_aur as Aur handler"
 
-	$_aur -S --needed rustup python python-pip fnm-bin go tmux tmux-bash-completion-git zsh-completions-git bash-complete-alias bash-completion fd ripgrep shellcheck-bin shfmt advcpmv bat exa git urlview git-secret
+	$_aur -S --needed rustup python python-pip fnm-bin go tmux tmux-bash-completion-git zsh-completions-git bash-complete-alias bash-completion fd ripgrep shellcheck-bin shfmt advcpmv bat exa git urlview git-secret trash-cli
 
 	check go && {
 		check simplehttp || go install github.com/niksingh710/simplehttp@latest

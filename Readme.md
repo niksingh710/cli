@@ -52,7 +52,7 @@ If i miss out something make sure to check error and resetup it. 😅
   - [yay](https://github.com/Jguer/yay) Aur helper.
 
   ```
-  yay -S rustup python python-pip fnm-bin go tmux tmux-bash-completion-git zsh-completion-git bash-complete-alias bash-completion fd ripgrep shellcheck-bin shfmt advcpmv pistol-git bat exa git glow urlview git-secret
+  yay -S rustup python python-pip fnm-bin go tmux tmux-bash-completion-git zsh-completion-git bash-complete-alias bash-completion fd ripgrep shellcheck-bin shfmt advcpmv pistol-git bat exa git glow urlview git-secret trash-cli
   ```
 
 Make sure to have [go](https://go.dev/), [python](https://www.python.org/), [nodejs](https://nodejs.org/en/), [rustup](https://rustup.rs/) is installed. ensure getting rust setup after installing rustup.
